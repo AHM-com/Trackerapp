@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>৩০ দিনের ইবাদত ট্র্যাকার | 30-Day Worship Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕌 ৩০ দিনের ইবাদত ট্র্যাকার</h1>
+            <p class="subtitle">30-Day Worship Tracker</p>
+            <p id="currentDate"></p>
+        </header>
+
+        <!-- Day Selector -->
+        <div class="day-selector card">
+            <h2>📅 দিন নির্বাচন করুন | Select Day</h2>
+            <div class="days-grid" id="daysGrid"></div>
+            <div class="current-day-display">
+                বর্তমান | Current: <strong id="currentDayText">Day 1</strong>
+            </div>
+            <button class="btn btn-danger" onclick="resetCurrentDay()">🔄 আজকের দিন রিসেট করুন | Reset This Day</button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-section card">
+            <h2>📊 আজকের অগ্রগতি | Today's Progress</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <span class="progress-text" id="progressText">0% Complete</span>
+            </div>
+            <div class="stats">
+                <div class="stat">সম্পন্ন দিন | Completed: <strong id="completedDays">0</strong></div>
+                <div class="stat">পারফেক্ট দিন | Perfect: <strong id="perfectDays">0</strong></div>
+                <div class="stat">সামগ্রিক অগ্রগতি | Overall: <strong id="completionRate">0%</strong></div>
+            </div>
+        </div>
+
+        <!-- 1. সালাত ট্র্যাকার | Salah Tracker -->
+        <div class="salah-section card">
+            <h2>📿 সালাত ট্র্যাকার | Salah Tracker</h2>
+            <div class="salah-table">
+                <div class="table-header">
+                    <span>সালাত | Prayer</span>
+                    <span>ফরজ | Farz</span>
+                    <span>সুন্নত | Sunnah</span>
+                </div>
+                
+                <div class="salah-row" data-salah="fajr">
+                    <span>ফজর | Fajr</span>
+                    <label><input type="checkbox" data-type="farz"></label>
+                    <label><input type="checkbox" data-type="sunnah"></label>
+                </div>
+                
+                <div class="salah-row" data-salah="dhuhr">
+                    <span>যুহর | Dhuhr</span>
+                    <label><input type="checkbox" data-type="farz"></label>
+                    <label><input type="checkbox" data-type="sunnah"></label>
+                </div>
+                
+                <div class="salah-row" data-salah="asr">
+                    <span>আসর | Asr</span>
+                    <label><input type="checkbox" data-type="farz"></label>
+                    <label><input type="checkbox" data-type="sunnah"></label>
+                </div>
+                
+                <div class="salah-row" data-salah="maghrib">
+                    <span>মাগরিব | Maghrib</span>
+                    <label><input type="checkbox" data-type="farz"></label>
+                    <label><input type="checkbox" data-type="sunnah"></label>
+                </div>
+                
+                <div class="salah-row" data-salah="isha">
+                    <span>ইশা | Isha</span>
+                    <label><input type="checkbox" data-type="farz"></label>
+                    <label><input type="checkbox" data-type="sunnah"></label>
+                </div>
+                
+                <div class="salah-row single-col" data-salah="taraweeh">
+                    <span>তারাবীহ | Taraweeh</span>
+                    <label class="full-width"><input type="checkbox" data-type="complete"> সম্পন্ন | Complete</label>
+                </div>
+                
+                <div class="salah-row single-col" data-salah="duha">
+                    <span>দুহা | Duha</span>
+                    <label class="full-width"><input type="checkbox" data-type="complete"> সম্পন্ন | Complete</label>
+                </div>
+                
+                <div class="salah-row single-col" data-salah="tahiyatul_wudu">
+                    <span>তাহিয়্যাতুল ওষু | Tahiyatul Wudu</span>
+                    <label class="full-width"><input type="checkbox" data-type="complete"> সম্পন্ন | Complete</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. কুরআন ট্র্যাকার | Quran Tracker -->
+        <div class="quran-section card">
+            <h2>📖 কুরআন ট্র্যাকার | Quran Tracker</h2>
+            <p class="note">(এগুলো প্রগ্রেস বারে গণনা হবে না | Not counted in progress bar)</p>
+            <div class="quran-inputs">
+                <div class="quran-input-group">
+                    <label>আয়াত | Verses</label>
+                    <input type="text" id="quran_ayat" maxlength="3" placeholder="0" pattern="[0-9]{1,3}">
+                </div>
+                <div class="quran-input-group">
+                    <label>পৃষ্ঠা | Pages</label>
+                    <input type="text" id="quran_page" maxlength="3" placeholder="0" pattern="[0-9]{1,3}">
+                </div>
+                <div class="quran-input-group">
+                    <label>পারা | Juz</label>
+                    <input type="text" id="quran_para" maxlength="3" placeholder="0" pattern="[0-9]{1,3}">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. দৈনিক চেকলিস্ট | Daily Checklist -->
+        <div class="checklist-section card">
+            <h2>✅ দৈনিক চেকলিস্ট | Daily Checklist</h2>
+            <div class="checklist-grid">
+                <label class="check-item">
+                    <input type="checkbox" data-check="morning_dhikr">
+                    <span>সকালের যিকর | Morning Dhikr</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="evening_dhikr">
+                    <span>সন্ধ্যার যিকর | Evening Dhikr</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="sadaqah">
+                    <span>দান-সদাকা | Charity</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="days_work">
+                    <span>দিনের কাজ | Good Deed of the Day</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="istighfar_70">
+                    <span>কমপক্ষে ৭০ বার ইস্তিগফার | At least 70x Istighfar</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="quran_tadabbur">
+                    <span>কুরআন তিলাওয়াত ও তাদাব্বুর | Quran Recitation & Reflection</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="allah_name">
+                    <span>আল্লাহর নাম মুখস্থ | Memorize Allah's Name</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="daily_dua">
+                    <span>দিনের দু'আ মুখস্থ | Memorize Daily Dua</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="daily_ayah">
+                    <span>দিনের আয়াত | Daily Ayah</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="daily_hadith">
+                    <span>দিনের হাদীস | Daily Hadith</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="miswak">
+                    <span>মিসওয়াক করা | Use Miswak</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" data-check="pre_sleep_dhikr">
+                    <span>ঘুমের পূর্বের যিকর | Pre-Sleep Dhikr</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 4. আজকের বিশেষ অর্জন | Today's Special Achievement -->
+        <div class="achievement-section card">
+            <h2>⭐ আজকের বিশেষ অর্জন | Today's Special Achievement</h2>
+            <p class="note">(আজকের দিন সম্পর্কে আপনার অনুভূতি লিখুন - সর্বোচ্চ ১০ লাইন | Write your feelings about today - max 10 lines)</p>
+            <textarea id="special_achievement" rows="10" maxlength="500" placeholder="আজ আমি... | Today I..."></textarea>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-save" onclick="saveCurrentDay()">💾 আজকের অগ্রগতি সেভ করুন | Save Today's Progress</button>
+            <button class="btn btn-reset-all" onclick="if(confirm('সব ডেটা মুছে ফেলবেন? | Delete all data?')) resetAll()">🗑️ ৩০ দিনের সব রিসেট | Reset All</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
