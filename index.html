@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>৩০ দিনের ইবাদত ট্র্যাকার | 30-Day Worship Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2a5298">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,49 +50,45 @@
                     <span>সুন্নত | Sunnah</span>
                 </div>
                 
-                <div class="salah-row" data-salah="fajr">
-                    <span>ফজর | Fajr</span>
-                    <label><input type="checkbox" data-type="farz"></label>
-                    <label><input type="checkbox" data-type="sunnah"></label>
+                <!-- 5 Fixed Prayers -->
+                <div id="fixed-salah-container">
+                    <div class="salah-row" data-salah="fajr">
+                        <span>ফজর | Fajr</span>
+                        <label><input type="checkbox" data-type="farz"></label>
+                        <label><input type="checkbox" data-type="sunnah"></label>
+                    </div>
+                    <div class="salah-row" data-salah="dhuhr">
+                        <span>যুহর | Dhuhr</span>
+                        <label><input type="checkbox" data-type="farz"></label>
+                        <label><input type="checkbox" data-type="sunnah"></label>
+                    </div>
+                    <div class="salah-row" data-salah="asr">
+                        <span>আসর | Asr</span>
+                        <label><input type="checkbox" data-type="farz"></label>
+                        <label><input type="checkbox" data-type="sunnah"></label>
+                    </div>
+                    <div class="salah-row" data-salah="maghrib">
+                        <span>মাগরিব | Maghrib</span>
+                        <label><input type="checkbox" data-type="farz"></label>
+                        <label><input type="checkbox" data-type="sunnah"></label>
+                    </div>
+                    <div class="salah-row" data-salah="isha">
+                        <span>ইশা | Isha</span>
+                        <label><input type="checkbox" data-type="farz"></label>
+                        <label><input type="checkbox" data-type="sunnah"></label>
+                    </div>
                 </div>
+
+                <!-- Extra Salah Header -->
+                <div class="dynamic-sub-header">অতিরিক্ত সালাত | Extra Salah</div>
                 
-                <div class="salah-row" data-salah="dhuhr">
-                    <span>যুহর | Dhuhr</span>
-                    <label><input type="checkbox" data-type="farz"></label>
-                    <label><input type="checkbox" data-type="sunnah"></label>
-                </div>
-                
-                <div class="salah-row" data-salah="asr">
-                    <span>আসর | Asr</span>
-                    <label><input type="checkbox" data-type="farz"></label>
-                    <label><input type="checkbox" data-type="sunnah"></label>
-                </div>
-                
-                <div class="salah-row" data-salah="maghrib">
-                    <span>মাগরিব | Maghrib</span>
-                    <label><input type="checkbox" data-type="farz"></label>
-                    <label><input type="checkbox" data-type="sunnah"></label>
-                </div>
-                
-                <div class="salah-row" data-salah="isha">
-                    <span>ইশা | Isha</span>
-                    <label><input type="checkbox" data-type="farz"></label>
-                    <label><input type="checkbox" data-type="sunnah"></label>
-                </div>
-                
-                <div class="salah-row single-col" data-salah="taraweeh">
-                    <span>তারাবীহ | Taraweeh</span>
-                    <label class="full-width"><input type="checkbox" data-type="complete"> সম্পন্ন | Complete</label>
-                </div>
-                
-                <div class="salah-row single-col" data-salah="duha">
-                    <span>দুহা | Duha</span>
-                    <label class="full-width"><input type="checkbox" data-type="complete"> সম্পন্ন | Complete</label>
-                </div>
-                
-                <div class="salah-row single-col" data-salah="tahiyatul_wudu">
-                    <span>তাহিয়্যাতুল ওজু | Tahiyatul Wudu</span>
-                    <label class="full-width"><input type="checkbox" data-type="complete"> সম্পন্ন | Complete</label>
+                <!-- Extra Salah Container (Dynamic) -->
+                <div id="extra-salah-container"></div>
+
+                <!-- Add Extra Salah Form -->
+                <div class="add-item-form">
+                    <input type="text" id="newExtraSalahInput" placeholder="নতুন সালাতের নাম লিখুন | Enter new extra salah...">
+                    <button class="btn btn-save" onclick="addExtraSalah()">➕ যোগ করুন | Add</button>
                 </div>
             </div>
         </div>
@@ -118,55 +116,14 @@
         <!-- 3. দৈনিক চেকলিস্ট | Daily Checklist -->
         <div class="checklist-section card">
             <h2>✅ দৈনিক চেকলিস্ট | Daily Checklist</h2>
-            <div class="checklist-grid">
-                <label class="check-item">
-                    <input type="checkbox" data-check="morning_dhikr">
-                    <span>সকালের যিকর | Morning Dhikr</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="evening_dhikr">
-                    <span>সন্ধ্যার যিকর | Evening Dhikr</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="sadaqah">
-                    <span>দান-সদাকা | Charity</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="days_work">
-                    <span>দিনের কাজ | Good Deed of the Day</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="istighfar_70">
-                    <span>কমপক্ষে ৭০ বার ইস্তিগফার | At least 70x Istighfar</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="quran_tadabbur">
-                    <span>কুরআন তিলাওয়াত ও তাদাব্বুর | Quran Recitation & Reflection</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="allah_name">
-                    <span>আল্লাহর নাম মুখস্থ | Memorize Allah's Name</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="daily_dua">
-                    <span>দিনের দু'আ মুখস্থ | Memorize Daily Dua</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="daily_ayah">
-                    <span>দিনের আয়াত | Daily Ayah</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="daily_hadith">
-                    <span>দিনের হাদীস | Daily Hadith</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="miswak">
-                    <span>মিসওয়াক করা | Use Miswak</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" data-check="pre_sleep_dhikr">
-                    <span>ঘুমের পূর্বের যিকর | Pre-Sleep Dhikr</span>
-                </label>
+            
+            <!-- Checklist Container (Dynamic) -->
+            <div class="checklist-grid" id="checklist-container"></div>
+
+            <!-- Add Task Form -->
+            <div class="add-item-form" style="margin-top: 20px;">
+                <input type="text" id="newTaskInput" placeholder="নতুন কাজের নাম লিখুন | Enter new task...">
+                <button class="btn btn-save" onclick="addDailyTask()">➕ যোগ করুন | Add</button>
             </div>
         </div>
 
@@ -184,6 +141,14 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker failed', err));
+        }
+    </script>
 </body>
-
+</html>
+</body>
 </html>
