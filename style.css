@@ -206,7 +206,7 @@ h2 {
 }
 
 .salah-row.single-col {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.5fr 160px;
 }
 
 .salah-row.single-col .full-width {
@@ -217,6 +217,7 @@ h2 {
     gap: 8px;
     font-size: 0.85rem;
     color: #333;
+    white-space: nowrap;
 }
 
 .salah-row input[type="checkbox"] {
@@ -283,6 +284,8 @@ h2 {
     cursor: pointer;
     transition: all 0.3s;
     border: 2px solid transparent;
+    position: relative; /* For the delete icon */
+    padding-right: 40px; /* Make room for the delete icon */
 }
 
 .check-item:hover {
@@ -343,103 +346,103 @@ h2 {
     gap: 8px;
 }
 
-.btn-save {
-    background: #28a745;
-    color: white;
-}
+.btn-save { background: #28a745; color: white; }
+.btn-save:hover { background: #218838; transform: scale(1.05); }
 
-.btn-save:hover {
-    background: #218838;
-    transform: scale(1.05);
-}
-
-.btn-danger {
-    background: #dc3545;
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c82333;
-}
-
-.btn-reset-all {
-    background: #6c757d;
-    color: white;
-}
-
-.btn-reset-all:hover {
-    background: #5a6268;
-}
+.btn-danger, .btn-reset-all { background: #dc3545; color: white; }
+.btn-danger:hover, .btn-reset-all:hover { background: #c82333; }
 
 .action-buttons {
     text-align: center;
     margin: 30px 0;
 }
 
-/* Notification */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10000;
-    padding: 16px 24px;
-    border-radius: 12px;
-    color: white;
+/* Dynamic Additions */
+.dynamic-sub-header {
+    font-size: 1.1rem;
     font-weight: bold;
-    animation: slideIn 0.4s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    max-width: 300px;
+    color: #1e3c72;
+    margin: 15px 0 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px dashed #aec0df;
+    text-align: center;
 }
 
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+.add-item-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-@keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
+.add-item-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #aec0df;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    color: #1e3c72;
+    outline: none;
+    transition: 0.3s;
+}
+
+.add-item-form input:focus {
+    border-color: #2a5298;
+}
+
+.action-icons {
+    display: inline-flex;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.icon-btn {
+    cursor: pointer;
+    opacity: 1; /* Changed from 0.5 to 1 */
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.icon-btn.delete {
+    color: #dc3545; /* Red color always */
+    background: rgba(220, 53, 69, 0.1); /* Light red background */
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.icon-btn.delete:hover {
+    background: rgba(220, 53, 69, 0.3); /* Darker red background on hover */
+    transform: scale(1.1);
+}
+
+.icon-btn.edit {
+    color: #28a745; /* Green for edit (optional) */
+    opacity: 0.7;
+}
+
+.icon-btn.edit:hover {
+    opacity: 1;
+}
+
+.check-item .icon-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     header h1 { font-size: 1.5rem; }
-    .subtitle { font-size: 0.95rem; }
     
-    .quran-inputs { 
-        grid-template-columns: 1fr; 
-        gap: 15px; 
-    }
-    .quran-input-group input { 
-        width: 80px; 
-        height: 60px; 
-    }
+    .quran-inputs { grid-template-columns: 1fr; gap: 15px; }
+    .quran-input-group input { width: 80px; height: 60px; }
     
     .salah-row, .table-header {
         grid-template-columns: 1fr 60px 60px;
         font-size: 0.85rem;
     }
-    .salah-row.single-col { 
-        grid-template-columns: 1fr 1fr; 
-    }
-    .salah-row span:first-child {
-        font-size: 0.8rem;
-    }
+    .salah-row.single-col { grid-template-columns: 1fr 140px; }
     
-    .checklist-grid { 
-        grid-template-columns: 1fr; 
-    }
-    
-    .stats {
-        font-size: 0.8rem;
-    }
-    .stat strong {
-        font-size: 1rem;
-    }
-    
-    .btn {
-        padding: 12px 18px;
-        font-size: 0.85rem;
-        margin: 5px;
-    }
+    .salah-row span:first-child { font-size: 0.8rem; }
+    .checklist-grid { grid-template-columns: 1fr; }
 }
